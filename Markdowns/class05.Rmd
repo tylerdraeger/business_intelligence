@@ -1,0 +1,63 @@
+---
+title: "class 05"
+author: "Tyler Draeger"
+date: "2026-09-09"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    numbered_sections: true
+    code_folding: show
+    code_dowload: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# game 01: find your seat
+```{r}
+campus = jsonlite::fromJSON(
+  "https://isa401-find-your-seat.vercel.app/campus.json")
+
+
+
+fsb = campus[['Farmer']]
+fsb$code
+
+install.packages("dplyr")
+sec_floor = fsb$floors[["2"]]
+sec_floor$sections
+
+df = sec_floor$rooms
+df
+install.packages("rlang")
+```
+
+#reading in excel
+```{r read_excel}
+occupation = readxl::read_excel(
+  path = "C:/ISA 401a/business_intelligence/data/occupation.xlsx", sheet = "Table 1.4", skip = 1)
+```
+
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
