@@ -17,9 +17,15 @@ short_description: Ask questions about ChatISA Job Scout postings
 A twelve-line [querychat](https://github.com/posit-dev/querychat) app built in ISA 401 (Miami University) on the job postings that [ChatISA](https://chatisa.fsb.miamioh.edu) Job Scout collected. It is the starting point for Assignment 05, where you deploy this app to Hugging Face Spaces and then improve it.
 
 ---
-
+## App
 **LIVE App https://midwest-airbnb-chat-8ntd.onrender.com
-
+## Examples
+Q1 - Which Columbus neighbourhood has the highest average nightly price for entire homes?
+![Question 1 result](Images/Screenshot%202026-09-23%20095734.png)
+Q2 - Do superhosts charge more per night than non-superhosts? Show the result as a bar chart.
+![Question 2 result](Images/Screenshot%202026-09-23%20095919.png)
+Q3 - How many listings can accommodate 10 or more guests in each city?
+![Question 3 result](Images/Screenshot%202026-09-23%20095956.png)
 ## What is this app?
 
 The app connects to a SQLite database (`data/scout.db`), hands the `scout_postings` table to querychat, and lets an LLM translate your question into SQL. Every answer shows the query it ran, so you can check the logic and reuse the SQL yourself.
