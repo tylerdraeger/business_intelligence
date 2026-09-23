@@ -18,6 +18,8 @@ A twelve-line [querychat](https://github.com/posit-dev/querychat) app built in I
 
 ---
 
+**LIVE App https://midwest-airbnb-chat-8ntd.onrender.com
+
 ## What is this app?
 
 The app connects to a SQLite database (`data/scout.db`), hands the `scout_postings` table to querychat, and lets an LLM translate your question into SQL. Every answer shows the query it ran, so you can check the logic and reuse the SQL yourself.
