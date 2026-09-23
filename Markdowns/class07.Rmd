@@ -1,0 +1,51 @@
+---
+title: "Class 07"
+author: "Tyler Draeger"
+date: "2026-09-16"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    number_sections: TRUE
+    code_download: TRUE
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# demo
+
+```{r}
+con = DBI::dbConnect(RSQLite::SQLite(), "../data/scout.db")
+postings = DBI::dbReadTable(con, "scout_postings") |> tibble::as_tibble()
+DBI::dbDisconnect(con)
+
+jobs = postings |>
+  dplyr::select(company, title, location_state, remote, category, posted_at, last_seen_at) |>
+  dplyr::mutate(dplyr::across(dplyr::ends_with("_at"), as.Date),
+                days_open = as.numeric(last_seen_at - posted_at))
+states = tibble::tibble(location_state = state.abb,
+                        state_name = state.name,
+                        region = as.character(state.region))
+
+jobs |>
+  dplyr::left_join(states, by = "location_state") |>
+  dplyr::group_by(region) |>
+  dplyr::summarize(postings = dplyr::n(), remote_share = mean(remote)) |>
+  dplyr::arrange(dplyr::desc(postings))
+```
+```{r}
+con = DBI::dbConnect(RSQLite::SQLite(), "../data/midwest_airbnb.db")
+listings = DBI::dbReadTable(con, "listings") |>
+  tibble::as_tibble()
+DBI::dbDisconnect(con)
+dplyr::glimpse(listings)
+```
+
+```{r}
+
+```
+
+
